@@ -1,26 +1,20 @@
-alphabet_extended = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '!', '@','#', '$', '%', '&', '(', ')', '*', '+']
+alphabet_extended = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '!', '@','#', '$', '%', '&', '(', ')','*', '+', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '!', '@','#', '$', '%', '&', '(', ')', '*', '+']
 
 from art import logo
 print(logo)
 
 def caesar(start_text, shift_amount, cipher_direction):
+    if cipher_direction == "encode":
+        shift_amount *= -1 
     end_text = ""
     #get positions of the characters
     for char in start_text:
         if char in alphabet_extended:
             position = alphabet_extended.index(char)
-            if cipher_direction == "encode":
-                new_position = position + shift_amount
-                if new_position > 46:
-                    new_char = alphabet_extended[new_position - 46]
-                else:
-                    new_char = alphabet_extended[new_position]
-                end_text += new_char
-    
-            elif cipher_direction == "decode":
-                new_position = position - shift_amount
-                new_char = alphabet_extended[new_position]
-                end_text += new_char
+            new_position = position + shift_amount
+            new_char = alphabet_extended[new_position]
+            end_text += new_char
+
         else:
             end_text += char
     print(f"Here's the {cipher_direction}d result: {end_text} \n ")
